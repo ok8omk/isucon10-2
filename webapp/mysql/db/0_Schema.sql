@@ -36,5 +36,7 @@ CREATE TABLE isuumo.chair
     features    VARCHAR(64)     NOT NULL,
     kind        VARCHAR(64)     NOT NULL,
     popularity  INTEGER         NOT NULL,
-    stock       INTEGER         NOT NULL
+    stock       INTEGER         NOT NULL,
+    minus_popularity INTEGER AS (-popularity) STORED NOT NULL
 );
+ALTER TABLE isuumo.chair ADD INDEX index_chair_on_minus_popularity(minus_popularity);
