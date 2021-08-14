@@ -8,12 +8,15 @@ from werkzeug.exceptions import BadRequest, NotFound
 import mysql.connector
 from sqlalchemy.pool import QueuePool
 from humps import camelize
+from pathlib import Path
+
+root_path = Path.home() / 'isuumo/webapp'
 
 LIMIT = 20
 NAZOTTE_LIMIT = 50
 
-chair_search_condition = json.load(open("../fixture/chair_condition.json", "r"))
-estate_search_condition = json.load(open("../fixture/estate_condition.json", "r"))
+chair_search_condition = json.load(open(root_path / 'fixture/chair_condition.json', "r"))
+estate_search_condition = json.load(open(root_path / 'fixture/estate_condition.json', "r"))
 
 app = flask.Flask(__name__)
 
