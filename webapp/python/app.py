@@ -48,7 +48,6 @@ def select_row(*args, **kwargs):
 
 @app.route("/initialize", methods=["POST"])
 def post_initialize():
-    sql_dir = "../mysql/db"
     sql_files = [
         "0_Schema.sql",
         "1_DummyEstateData.sql",
@@ -56,7 +55,9 @@ def post_initialize():
     ]
 
     for sql_file in sql_files:
-        command = f"mysql -h {mysql_connection_env['host']} -u {mysql_connection_env['user']} -p{mysql_connection_env['password']} -P {mysql_connection_env['port']} {mysql_connection_env['database']} < {path.join(sql_dir, sql_file)}"
+        sql_path = root_path / 'mysql/db' / sql_file
+
+        command = f"mysql -h {mysql_connection_env['host']} -u {mysql_connection_env['user']} -p{mysql_connection_env['password']} -P {mysql_connection_env['port']} {mysql_connection_env['database']} < {sql_path}"
         subprocess.run(["bash", "-c", command])
 
     return {"language": "python"}
