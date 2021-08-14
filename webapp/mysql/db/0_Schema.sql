@@ -18,7 +18,7 @@ CREATE TABLE isuumo.estate
     door_width  INTEGER             NOT NULL,
     features    VARCHAR(64)         NOT NULL,
     popularity  INTEGER             NOT NULL,
-    minus_popularity INTEGER AS (-popularity) STORED NOT NULL,
+    minus_popularity INTEGER AS (-popularity) STORED NOT NULL
 );
 ALTER TABLE isuumo.estate ADD INDEX index_estate_on_minus_popularity(minus_popularity);
 
