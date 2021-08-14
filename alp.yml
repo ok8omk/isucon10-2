@@ -1,0 +1,11 @@
+file: /var/log/nginx/access-ltsv.log
+sort: count
+reverse: true
+output: count,2xx,4xx,5xx,method,uri,min,max,p99
+filters: 'Uri matches "api"'
+matching_groups:
+- '^/api/chair/[0-9]+$'
+- '^/api/chair/buy/[0-9]+$'
+- '^/api/estate/[0-9]+$'
+- '^/api/estate/req_doc/[0-9]+$'
+- '^/api/recommended_estate/[0-9]+$'
