@@ -282,7 +282,7 @@ def get_estate_search():
     query = f"SELECT COUNT(*) as count FROM estate WHERE {search_condition}"
     count = select_row(query, params)["count"]
 
-    query = f"SELECT * FROM estate WHERE {search_condition} ORDER BY popularity DESC, id ASC LIMIT %s OFFSET %s"
+    query = f"SELECT * FROM estate WHERE {search_condition} ORDER BY minus_popularity ASC, id ASC LIMIT %s OFFSET %s"
     chairs = select_all(query, params + [per_page, per_page * page])
 
     return {"count": count, "estates": camelize(chairs)}
